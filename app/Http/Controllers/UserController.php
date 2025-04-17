@@ -9,9 +9,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    // Register: Create a new user
-    public function Register(Request $request)
-    {
+    
+    public function Register(Request $request){
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
@@ -30,9 +29,8 @@ class UserController extends Controller
         ], 201);
     }
 
-    // Login: Authenticate user and issue token
-    public function Login(Request $request)
-    {
+
+    public function Login(Request $request){
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -54,14 +52,54 @@ class UserController extends Controller
         ], 401);
     }
 
-    // GetUsers: Retrieve all users (example implementation)
+
     public function GetUsers(Request $request)
     {
         $users = User::all();
-
         return response()->json([
             'message' => 'Users retrieved successfully',
             'users' => $users,
         ]);
     }
+
+    public function getUser($id)
+    {
+        $user = User::find($id);
+    
+        if (!$user) {
+            return response()->json([
+                'message' => 'User not found'
+            ], 404);
+        }
+    
+        return response()->json($user);
+    }
+
+    public function updateUser(Request $request, $id)
+{
+    $user = User::find($id);
+
+    if (!$user) {
+        return response()->json([
+            'message' => 'User not found'
+        ], 404);
+    }
+
+
+    $request->validate([
+        'name' => 'string|max:255',
+        'email' => 'email|unique:users,email,' . $id,
+        'phone' => 'nullable|string|max:20',
+        'age' => 'nullable|integer|min:0',
+    ]);
+
+    // Update fields
+    $user->update($request->all());
+
+    return response()->json([
+        'message' => 'User updated successfully',
+        'user' => $user
+    ]);
+}
+    
 }

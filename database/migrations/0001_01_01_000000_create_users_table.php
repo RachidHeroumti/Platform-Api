@@ -19,6 +19,17 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->string('address');
+            $table->string('role');
+            $table->boolean('active')->default(false); 
+            $table->text('bio')->nullable(); 
+            $table->integer('age')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('image')->nullable();
+            $table->string('address')->nullable();
+            $table->string('country')->nullable();
+            $table->json('skill')->nullable(); 
+          
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -37,9 +48,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('users');

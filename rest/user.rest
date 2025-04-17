@@ -12,8 +12,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "name": "Rachid",
-  "email": "raherou@gmail.com",
+  "name": "Rachid2",
+  "email": "raherou2@gmail.com",
   "password": "test12345"
 }
 
@@ -26,3 +26,27 @@ Accept: application/json
   "email": "raherou@gmail.com",
   "password": "test12345"
 }
+
+### get users
+GET {{url}}/api/users
+Content-Type: application/json
+Accept: application/json
+
+### get user
+GET {{url}}/api/users/1
+Content-Type: application/json
+Accept: application/json
+
+### update user
+PUT {{url}}/api/users/1 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "rachid",
+  "email": "rachid@example.com",
+  "phone": "123456789",
+  "age": 30
+}
+
+

@@ -1,0 +1,22 @@
+@url = http://localhost:8000/api
+
+### Create Service
+POST {{url}}/services
+Content-Type: application/json
+Accept: application/json
+
+{
+    "title": "Premium Voice Over",
+    "description": "Professional voice over in English and Arabic.",
+    "type": "Voice Over",
+    "price": 120,
+    "examples": ["https://example.com/demo1.mp3", "https://example.com/demo2.mp3"],
+    "duration": 3,
+    "image": "https://example.com/image.png",
+    "user_id": 2
+}
+
+### Get Services
+GET {{url}}/services
+Content-Type: application/json
+Accept: application/json
