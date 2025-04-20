@@ -1,0 +1,48 @@
+
+🛠 Artisan Commands (Laravel CLI)
+Laravel comes with a built-in command-line tool called Artisan:
+
+✅ Basic Commands
+php artisan serve            # Start the development server
+php artisan list             # Show all available Artisan commands
+php artisan help <command>   # Help about a specific command
+
+🧱 Creating Files
+php artisan make:controller MyController      # Create a controller
+php artisan make:model MyModel                # Create a model
+php artisan make:migration create_my_table    # Create a migration
+php artisan make:seeder MySeeder              # Create a seeder
+php artisan make:factory MyFactory            # Create a factory
+php artisan make:middleware MyMiddleware      # Create a middleware
+php artisan make:request MyFormRequest        # Create a form request validation
+php artisan make:command MyCommand            # Create a custom command
+
+🔁 Migrations
+php artisan migrate              # Run all migrations
+php artisan migrate:rollback    # Undo the last migration batch
+php artisan migrate:refresh     # Rollback and re-run all migrations
+php artisan migrate:fresh       # Drop all tables and re-run all migrations
+
+🌱 Database Seeding
+php artisan db:seed                 # Run the DatabaseSeeder
+php artisan db:seed --class=MySeeder  # Run a specific seeder
+
+🧹 Cache & Config
+php artisan config:cache     # Cache config files
+php artisan route:cache      # Cache routes
+php artisan view:cache       # Cache Blade views
+php artisan cache:clear      # Clear application cache
+php artisan config:clear     # Clear cached config
+php artisan route:clear      # Clear cached routes
+php artisan view:clear       # Clear cached views
+
+🔐 Authentication & Scaffolding (if using Breeze, Jetstream, etc.)
+php artisan breeze:install
+php artisan jetstream:install livewire
+
+🧪 Testing
+php artisan test             # Run tests
+
+➕ Additional Examples
+php artisan make:migration add_fields_to_users_table --table=users
+php artisan make:migration add_user_id_to_services_table --table=services

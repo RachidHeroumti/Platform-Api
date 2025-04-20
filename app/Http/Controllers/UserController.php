@@ -6,51 +6,56 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use Tymon\JWTAuth\Facades\JWTAuth;
 class UserController extends Controller
 {
-    
+
+
     public function Register(Request $request){
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8',
         ]);
-
+    
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-
+    
+        
+        $token = JWTAuth::fromUser($user);
+    
         return response()->json([
             'message' => 'User registered successfully',
             'user' => $user,
+            'access_token' => $token,
+            'token_type' => 'Bearer',
         ], 201);
     }
+    
 
-
-    public function Login(Request $request){
+    public function Login(Request $request)
+    {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-
-        if (Auth::attempt($credentials)) {
-            $user = User::where('email', $request->email)->first();
-            $token = $user->createToken('auth-token')->plainTextToken;
-
+    
+        if (!$token = JWTAuth::attempt($credentials)) {
             return response()->json([
-                'user' => $user,
-                'access_token' => $token,
-                'token_type' => 'Bearer',
-            ]);
+                'message' => 'Email or password incorrect',
+            ], 401);
         }
-
+    
         return response()->json([
-            'message' => 'Email or password incorrect',
-        ], 401);
+            'user' => auth()->user(),
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+        ]);
     }
+    
 
 
     public function GetUsers(Request $request)
@@ -62,8 +67,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function getUser($id)
-    {
+    public function getUser($id) {
         $user = User::find($id);
     
         if (!$user) {
@@ -75,8 +79,7 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    public function updateUser(Request $request, $id)
-{
+    public function updateUser(Request $request, $id){
     $user = User::find($id);
 
     if (!$user) {
@@ -84,7 +87,6 @@ class UserController extends Controller
             'message' => 'User not found'
         ], 404);
     }
-
 
     $request->validate([
         'name' => 'string|max:255',
@@ -100,6 +102,24 @@ class UserController extends Controller
         'message' => 'User updated successfully',
         'user' => $user
     ]);
-}
+   }
+
+   public function getUserServices($id)
+   {
+       $user = User::find($id);
+
+       if (!$user) {
+           return response()->json([
+               'error' => 'User not found'
+           ], 404);
+       }
+
+       $services = $user->services;
+
+       return response()->json([
+           'user' => $user,
+           'services' => $services
+       ]);
+   }
     
 }

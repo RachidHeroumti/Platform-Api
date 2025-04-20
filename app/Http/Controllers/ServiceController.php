@@ -29,11 +29,30 @@ class ServiceController extends Controller
             'service' => $service,
         ], 201);
     }
-    public function getServices(Request $request){
+    public function getServices(){
      $services = Service::all();
      return response()->json([
         'services'=>$services,
      ]);
     }
+
+
+       public function getService($id){
+        $service = Service::find($id);
+        if (!$service) {
+            return response()->json([
+                'error' => 'Service not found'
+            ], 404);
+        }
+
+        $user= $service->user ;
+
+
+        return response()->json([
+            'service' => $service,
+        ]);
+
+       }
+
     
 }

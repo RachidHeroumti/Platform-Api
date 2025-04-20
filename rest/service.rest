@@ -20,3 +20,8 @@ Accept: application/json
 GET {{url}}/services
 Content-Type: application/json
 Accept: application/json
+
+### Get Services
+GET {{url}}/services/1
+Content-Type: application/json
+Accept: application/json
