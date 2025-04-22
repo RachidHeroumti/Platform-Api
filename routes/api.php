@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ServiceController;
@@ -22,3 +23,6 @@ Route::get('/users/services/{id}', [UserController::class, 'getUserServices']);
 Route::post('/services', [ServiceController::class, 'createService']); 
 Route::get('/services', [ServiceController::class, 'getServices']);
 Route::get('/services/{id}', [ServiceController::class, 'getService']);
+
+Route::post('/messages/send', [MessageController::class, 'sendMessage']);
+Route::get('/messages/user/{userId}', [MessageController::class, 'getUserMessages']);

@@ -1,0 +1,18 @@
+@url=http://localhost:8000
+@token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3JlZ2lzdGVyIiwiaWF0IjoxNzQ1MTcxMjM1LCJleHAiOjE3NDUxNzQ4MzUsIm5iZiI6MTc0NTE3MTIzNSwianRpIjoieDd3ZmV3YkpzNTYyOXpOZyIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.h3tjPAWg_RuMJkFQPMQP9PfjsMLqhwD4n4VeeeI6_d4
+
+### send message
+POST {{url}}/api/messages/send HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "sender": 2,
+  "receiver": 1,
+  "content": "how are you ,1"
+}
+
+### get user messages
+GET {{url}}/api/messages/user/1 HTTP/1.1
+Content-Type: application/json
+Accept: application/json

@@ -19,14 +19,13 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->string('address');
-            $table->string('role');
+            $table->string('address')->nullable();;
+            $table->string('role')->default('user');
             $table->boolean('active')->default(false); 
             $table->text('bio')->nullable(); 
             $table->integer('age')->nullable();
             $table->string('phone')->nullable();
             $table->string('image')->nullable();
-            $table->string('address')->nullable();
             $table->string('country')->nullable();
             $table->json('skill')->nullable(); 
           
