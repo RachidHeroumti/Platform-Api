@@ -7,9 +7,9 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "sender": 2,
-  "receiver": 1,
-  "content": "how are you ,1"
+  "sender": 1,
+  "receiver": 2,
+  "content": "how are you , 2"
 }
 
 ### get user messages

@@ -31,11 +31,11 @@ class BackendMessage implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('backend-updates'), // Let's use a more descriptive name
+            new Channel('backend-updates'), // Let's use a more descriptive name
         ];
     }
 
-    // Optional: Define the data that should be broadcast
+
     public function broadcastWith(): array
     {
         return [
