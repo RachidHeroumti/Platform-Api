@@ -1,9 +1,13 @@
 @url = http://localhost:8000/api
+@token =eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzQ1ODQxOTg3LCJleHAiOjE3NDU4NDU1ODcsIm5iZiI6MTc0NTg0MTk4NywianRpIjoieURibXhjdGxWdDlPRUtmSiIsInN1YiI6IjQiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.RRK1fH1ZaYPfYZSfnLJhsz_yqOyUu5uipsPwEofYKXE
+
+
 
 ### Create Service
 POST {{url}}/services
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
 
 {
     "title": "Premium Voice Over",
@@ -13,15 +17,17 @@ Accept: application/json
     "examples": ["https://example.com/demo1.mp3", "https://example.com/demo2.mp3"],
     "duration": 3,
     "image": "https://example.com/image.png",
-    "user_id": 2
+    "user_id": 4
 }
 
 ### Get Services
 GET {{url}}/services
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
 
 ### Get Services
 GET {{url}}/services/1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}

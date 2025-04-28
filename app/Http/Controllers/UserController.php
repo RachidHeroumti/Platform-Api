@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Auth\Events\Registered;
 class UserController extends Controller
 {
 
@@ -24,7 +25,7 @@ class UserController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     
-        
+        event(new Registered($user));
         $token = JWTAuth::fromUser($user);
     
         return response()->json([
