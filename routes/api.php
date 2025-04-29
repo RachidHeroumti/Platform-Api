@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -23,9 +24,11 @@ Route::put('/users/{id}', [UserController::class, 'updateUser'])->middleware('au
 
 Route::get('/users/services/{id}', [UserController::class, 'getUserServices']);
 
-Route::post('/services', [ServiceController::class, 'createService'])->middleware('auth:api')->middleware('role:admin,buyer');; 
-Route::get('/services', [ServiceController::class, 'getServices'])->middleware('auth:api')->middleware('role:admin');
+Route::post('/services', [ServiceController::class, 'createService'])->middleware('auth:api'); 
+Route::get('/services', [ServiceController::class, 'getServices']);
 Route::get('/services/{id}', [ServiceController::class, 'getService'])->middleware('auth:api')->middleware('role:admin');
 
 Route::post('/messages/send', [MessageController::class, 'sendMessage'])->middleware('auth:api')->middleware('role:admin,buyer,seller');
 Route::get('/messages/user/{userId}', [MessageController::class, 'getUserMessages'])->middleware('auth:api')->middleware('role:admin,buyer,seller');
+
+Route::post('/media/upload', [MediaController::class, 'uploadImgs']);

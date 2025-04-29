@@ -11,10 +11,10 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "name": "shop",
-  "email": "studentjva2@gmail.com",
+  "name": "buyer",
+  "email": "buyer@gmail.com",
   "password": "test12345",
-  "role":"admin"
+  "role":"buyer"
   }
 
 ### Login 
@@ -23,7 +23,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-   "email": "buyer@gmail.com",
+ "email": "admin@gmail.com",
   "password": "test12345"
 }
 
@@ -46,7 +46,7 @@ Accept: application/json
 Authorization: Bearer {{token}}
 
 {
-   "email": "buyer@gmail.com",
+  "email": "admin@gmail.com",
   "phone": "123456789",
   "age": 30,
   "role":"buyer"

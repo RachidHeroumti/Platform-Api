@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Log;
 class ServiceController extends Controller
 {
-    //
+ 
     public function createService(Request $request)
     {
-       
+        $user = $request->user();
+       // Log::info('User data: ', ['user' => $user->id]);
+    
         $examples = json_encode($request->input('examples'));
+    
         $service = Service::create([
             'title' => $request->input('title'),
             'price' => $request->input('price'),
@@ -20,15 +23,15 @@ class ServiceController extends Controller
             'type' => $request->input('type'),
             'duration' => $request->input('duration'),
             'image' => $request->input('image'),
-            'user_id' => $request->input('user_id'),
+            'user_id' => $user->id,
         ]);
-    
     
         return response()->json([
             'message' => 'Service created',
             'service' => $service,
         ], 201);
     }
+    
     public function getServices(){
      $services = Service::all();
      return response()->json([

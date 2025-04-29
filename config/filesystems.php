@@ -59,6 +59,14 @@ return [
             'throw' => false,
             'report' => false,
         ],
+    'cloudinary' => [
+        'driver' => 'cloudinary',
+        'url' => env('CLOUDINARY_URL'),  // Use the Cloudinary URL from .env
+        'cloud' => env('CLOUDINARY_CLOUD_NAME'),
+        'key' => env('CLOUDINARY_KEY'),
+        'secret' => env('CLOUDINARY_SECRET'),
+        'secure' => true, // or false, depending on your requirements
+    ],
 
     ],
 
